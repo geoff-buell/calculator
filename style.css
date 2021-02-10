@@ -1,0 +1,324 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@font-face {
+  font-family: "Digital";
+  src: url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot");
+  src: url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff") format("woff"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.svg#Digital-7") format("svg");
+}
+/* Colors */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background: #414958;
+  font-family: "Inter", sans-serif;
+  font-size: 1.5em;
+  color: #fff2e5;
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 310px;
+  height: 500px;
+  padding: 10px;
+  background: #afafb6;
+  border-radius: 6px;
+  box-shadow: -2px 3px 5px #2b313b;
+}
+#calculator #top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 30px;
+}
+#calculator #top .lines {
+  width: 330px;
+  height: 2px;
+  background: #94949e;
+}
+#calculator #display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 280px;
+  height: 60px;
+  background: #708160;
+  border-top: 8px solid #94949e;
+  border-right: 8px solid #94949e;
+  border-bottom: 8px solid #a1a1aa;
+  border-left: 8px solid #a1a1aa;
+  font-family: "Digital";
+  font-size: 1.8em;
+  color: #37402f;
+}
+#calculator #display span {
+  margin-right: 10px;
+  margin-top: 3px;
+}
+#calculator #btns-pad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 350px;
+  background: #333;
+  border-top: 8px solid #94949e;
+  border-right: 8px solid #94949e;
+  border-bottom: 8px solid #a1a1aa;
+  border-left: 8px solid #a1a1aa;
+}
+#calculator #btns-pad button {
+  border: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  color: #fff2e5;
+  cursor: pointer;
+}
+#calculator #btns-pad .clear-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #374045, #49545B);
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #540B0E, #801805);
+}
+#calculator #btns-pad .clear-btn .btn-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #49545B, #374045);
+  border: 1px solid #49545B;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #801805, #540B0E);
+  border: 1px solid #801805;
+}
+#calculator #btns-pad .clear-btn-clicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #374045, #49545B);
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #801805, #540B0E);
+}
+#calculator #btns-pad .clear-btn-clicked .btn-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #49545B, #374045);
+  border: 1px solid #49545B;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #540B0E, #801805);
+  border: 1px solid #801805;
+}
+#calculator #btns-pad .power-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #374045, #49545B);
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #008000, #00b300);
+}
+#calculator #btns-pad .power-btn .btn-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #49545B, #374045);
+  border: 1px solid #49545B;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00b300, #008000);
+  border: 1px solid #00b300;
+}
+#calculator #btns-pad .power-btn-clicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #374045, #49545B);
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #00b300, #008000);
+}
+#calculator #btns-pad .power-btn-clicked .btn-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #49545B, #374045);
+  border: 1px solid #49545B;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #008000, #00b300);
+  border: 1px solid #00b300;
+}
+#calculator #btns-pad .num-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #374045, #49545B);
+  border-radius: 4px;
+  cursor: pointer;
+}
+#calculator #btns-pad .num-btn .num-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #49545B, #374045);
+  border: 1px solid #49545B;
+  border-radius: 50%;
+}
+#calculator #btns-pad .num-btn-clicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #374045, #49545B);
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #49545B, #374045);
+}
+#calculator #btns-pad .num-btn-clicked .num-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #49545B, #374045);
+  border: 1px solid #49545B;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #374045, #49545B);
+}
+#calculator #btns-pad .opr-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #797986, #94949e);
+  border-radius: 3px;
+}
+#calculator #btns-pad .opr-btn .opr-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #94949e, #797986);
+  border: 1px solid #94949e;
+  border-radius: 50%;
+}
+#calculator #btns-pad .opr-btn .opr-top p {
+  margin-bottom: 4px;
+}
+#calculator #btns-pad .opr-btn-clicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #797986, #94949e);
+  border-radius: 3px;
+  background: linear-gradient(45deg, #94949e, #797986);
+}
+#calculator #btns-pad .opr-btn-clicked .opr-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #94949e, #797986);
+  border: 1px solid #94949e;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #797986, #94949e);
+}
+#calculator #btns-pad .opr-btn-clicked .opr-top p {
+  margin-bottom: 4px;
+}
+#calculator #btns-pad .equals-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #797986, #94949e);
+  border-radius: 3px;
+}
+#calculator #btns-pad .equals-btn .opr-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #94949e, #797986);
+  border: 1px solid #94949e;
+  border-radius: 50%;
+}
+#calculator #btns-pad .equals-btn-clicked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, #797986, #94949e);
+  border-radius: 3px;
+  background: linear-gradient(45deg, #94949e, #797986);
+}
+#calculator #btns-pad .equals-btn-clicked .opr-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, #94949e, #797986);
+  border: 1px solid #94949e;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #797986, #94949e);
+}
+#calculator #btns-pad .top-row {
+  font-size: 0.8em;
+}
+
+/*# sourceMappingURL=style.css.map */

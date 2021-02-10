@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+@font-face {
+  font-family: 'Digital';
+  src: url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot');
+  src: url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot?#iefix')
+      format('embedded-opentype'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff2')
+      format('woff2'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff')
+      format('woff'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.ttf')
+      format('truetype'),
+    url('//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.svg#Digital-7')
+      format('svg');
+}
+
+/* Colors */
+$darkGray: #374045;
+$gray: #49545B;
+$lightGray: #797986;
+$lighterGray: #94949e;
+$lightestGray: #a1a1aa;
+$silver: #afafb6;
+$lightCream: #fff2e5;
+$displayGreen: #708160;
+$displayText: #37402f;
+$darkGreen: #008000;
+$green: #00b300;
+$darkRed: #540B0E;
+$red: #801805;
+
+@mixin standardFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin numBtnStyle {
+  @include standardFlex;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, $darkGray, $gray);
+  border-radius: 4px;
+  cursor: pointer;
+}
+@mixin numTopStyle {
+  @include standardFlex;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, $gray, $darkGray);
+  border: 1px solid $gray;
+  border-radius: 50%;
+}
+
+@mixin oprBtnStyle {
+  @include standardFlex;
+  width: 68px;
+  height: 68px;
+  margin: 1px;
+  background: linear-gradient(45deg, $lightGray, $lighterGray);
+  border-radius: 3px;
+}
+@mixin oprTopStyle {
+  @include standardFlex;
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(45deg, $lighterGray, $lightGray);
+  border: 1px solid $lighterGray;
+  border-radius: 50%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include standardFlex;
+  flex-direction: column;
+  height: 100vh;
+  background: #414958;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5em;
+  color: $lightCream;
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 310px;
+  height: 500px;
+  padding: 10px;
+  background: $silver;
+  border-radius: 6px;
+  box-shadow: -2px 3px 5px #2b313b;
+  #top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+    height: 30px;
+    .lines {
+      width: 330px;
+      height: 2px;
+      background: $lighterGray;
+    }
+  }
+  #display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 280px;
+    height: 60px;
+    background: $displayGreen;
+    border-top: 8px solid $lighterGray;
+    border-right: 8px solid $lighterGray;
+    border-bottom: 8px solid$lightestGray;
+    border-left: 8px solid $lightestGray;
+    font-family: 'Digital';
+    font-size: 1.8em;
+    color: $displayText;
+    span {
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+  } 
+  #btns-pad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 350px;
+    background: #333;
+    border-top: 8px solid $lighterGray;
+    border-right: 8px solid $lighterGray;
+    border-bottom: 8px solid $lightestGray;
+    border-left: 8px solid $lightestGray;
+    button {
+      border: none;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 1em;
+      color: $lightCream;
+      cursor: pointer;
+    }
+    .clear-btn {
+      @include numBtnStyle;
+      background: linear-gradient(45deg, $darkRed, $red);
+      .btn-top {
+        @include numTopStyle;
+        background: linear-gradient(45deg, $red, $darkRed);
+        border: 1px solid $red;
+      }
+    }
+    .clear-btn-clicked {
+      @include numBtnStyle;
+      background: linear-gradient(45deg, $red, $darkRed);
+      .btn-top {
+        @include numTopStyle;
+        background: linear-gradient(45deg, $darkRed, $red);
+        border: 1px solid $red;
+      }
+    }
+    .power-btn {
+      @include numBtnStyle;
+      background: linear-gradient(45deg, $darkGreen, $green);
+      .btn-top {
+        @include numTopStyle;
+        background: linear-gradient(45deg, $green, $darkGreen);
+        border: 1px solid $green;
+      }
+    }
+    .power-btn-clicked {
+      @include numBtnStyle;
+      background: linear-gradient(45deg, $green, $darkGreen);
+      .btn-top {
+        @include numTopStyle;
+        background: linear-gradient(45deg, $darkGreen, $green);
+        border: 1px solid $green;
+      }
+    }
+    .num-btn {
+      @include numBtnStyle;
+      .num-top {
+        @include numTopStyle;
+      }
+    }
+    .num-btn-clicked {
+      @include numBtnStyle;
+      background: linear-gradient(45deg, $gray, $darkGray);
+      .num-top {
+        @include numTopStyle;
+        background: linear-gradient(45deg, $darkGray, $gray);
+      }
+    }
+    .opr-btn {
+      @include oprBtnStyle;
+      .opr-top {
+        @include oprTopStyle;
+        p {
+          margin-bottom: 4px;
+        }
+      }
+    }
+    .opr-btn-clicked {
+      @include oprBtnStyle;
+      background: linear-gradient(45deg, $lighterGray, $lightGray);
+      .opr-top {
+        @include oprTopStyle;
+        background: linear-gradient(45deg, $lightGray, $lighterGray);
+        p {
+          margin-bottom: 4px;
+        }
+      }
+    }
+    .equals-btn {
+      @include oprBtnStyle;
+      .opr-top {
+        @include oprTopStyle;
+      }
+    }
+    .equals-btn-clicked {
+      @include oprBtnStyle;
+      background: linear-gradient(45deg, $lighterGray, $lightGray);
+      .opr-top {
+        @include oprTopStyle;
+        background: linear-gradient(45deg, $lightGray, $lighterGray);
+      }
+    }
+    .top-row {
+      font-size: 0.8em;
+    }
+  }
+}
