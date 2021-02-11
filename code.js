@@ -4,11 +4,13 @@ $(document).ready(() => {
   let isOn = true;
   let isEval = false;
   let numArr = [];
+  let oprCount = 0;
   let [firstNum, operator, secondNum, result] = [null, null, null, null];
 
   handleNumbers = (button) => {
     if (isOn) {
       isEval = false;
+
       // prevents double zeros
       if (button.value === '0' && output[0].innerHTML === '0') {
         return false;
@@ -23,13 +25,7 @@ $(document).ready(() => {
       if (numArr.length > 12) {
         output.text('ERR MAX DIGIT');
       } else {
-        // blink effect to output if firstNum === secondNum && single digit
-        if (numArr.length === 1 && numArr[0] === firstNum) {
-          output.fadeOut(150).fadeIn(150);
-          output.text(numArr.join(''));
-        } else {
-          output.text(numArr.join(''));
-        }
+        output.text(numArr.join(''));
       }
     }
   };
@@ -37,7 +33,11 @@ $(document).ready(() => {
   handleOperators = (button) => {
     if (isOn) {
       isEval = false;
-
+      // allows multiple entries without having to press '=' every time
+      oprCount++;
+      if (oprCount > 1) {
+        calculate();
+      }
       // allows negative numbers for second number
       if (button.value === '-' && /[*/+]/.test(operator)) {
         firstNum = output[0].innerHTML;
@@ -47,9 +47,9 @@ $(document).ready(() => {
         numArr.push(button.value);
       // positive numbers  
       } else {
+        numArr = [];
         operator = button.value;
         firstNum = output[0].innerHTML;
-        numArr = [];
       }
     } 
   };
@@ -58,6 +58,7 @@ $(document).ready(() => {
     if (isOn) {
       isEval = false;
       numArr = [];
+      oprCount = 0;
       [firstNum, operator, secondNum, result] = [null, null, null, null];
       output.text('0');
     }
@@ -101,8 +102,7 @@ $(document).ready(() => {
         operator = null;
         if (result === Infinity || result === -Infinity) {
           divideByZero();
-        }
-        if (result.toString().length > 12) {
+        } else if (result.toString().length > 12) {
           let fixedNum = result.toFixed(4);
           output.text(fixedNum);
           isEval = true;
@@ -146,17 +146,6 @@ $(document).ready(() => {
     $('#calculator').animate({ width: '310px', height: '500px' }).delay(1500).fadeIn(1000);
     setTimeout(() => { $('body').css('background-color', '#414958') }, 3200);
   }
-  
-  // blink effect to output when operators /[-/*+]/ are pressed
-  document.querySelectorAll('.opr-btn').forEach((button) => {
-    button.addEventListener('click', () => {
-      if (button.value === 'CE' || button.value === '%') {
-        output.fadeOut(0).fadeIn(0);
-      } else {
-        output.fadeOut(150).fadeIn(150);
-      }
-    });
-  });
 
   // add event listeners to all of the buttons
   document.querySelectorAll('button').forEach((button) => {
@@ -172,6 +161,7 @@ $(document).ready(() => {
       } else if (button.value === '%') {
         percentage();
       } else if (button.value === '=') {
+        oprCount = 0;
         calculate();
       } else if (button.value === '⏻') {
         power();
@@ -218,10 +208,10 @@ $(document).ready(() => {
 // Can type 0 before other numbers - ex. 02 [✅]
 // Can type ex. .2 which needs to be converted to 0.2 [✅]
 // If result is the same as the second number, need a way to distinguish calculation is done [❌]
-// Negative numbers aren't working yet [✅]
+// Having some difficulties with negative numbers [❌]
 // Logging zeros after decimal sometimes [❌]
 // Can type a decimal, then press CE back to 0, then type number after 0, like 02 [❌]
-// If you press '=' immediately after pressing '=', output goes nuts [✅] 
+// If you press '=' immediately after pressing '=', calculate is run again [✅] 
 
 
 // REQUIREMENTS
@@ -240,7 +230,7 @@ $(document).ready(() => {
 
 // If another operator button is pressed immediately after opr btn has been pressed, 
    // replace operator button value with most recent opr btn value, unless it is '-' 
-   // in which the following number should be treated as a negative value. [✅]
+   // in which the following number should be treated as a negative value. [❌]
 
 // If CE button is pressed, last digit on screen should be removed. [✅]
 
@@ -257,6 +247,6 @@ $(document).ready(() => {
 
 // If additional operator button is pressed after second number, calculate operation, 
    // display result, store result as first number and additional operator button 
-   // gets saved as operator. [❌]
+   // gets saved as operator. [✅]
 
 // Buttons should transform when clicked as though you are pressing them. [✅]
