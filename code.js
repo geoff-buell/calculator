@@ -100,16 +100,7 @@ $(document).ready(() => {
         numArr = [];
         operator = null;
         if (result === Infinity || result === -Infinity) {
-          $('body').css('background-color', 'black');
-          $('p').hide();
-          $('span').hide();
-          $('#calculator').animate({ width: '100%', height: '1px' }).fadeOut(0);
-          $('#calculator').children().animate({ width: '100%', height: '1px' });
-          $('.lines').animate({ width: '100%', height: '1px' });
-          $('button').animate({ width: '100%', height: '1px' });
-          $('button').children().animate({ width: '100%', height: '1px' });
-          $('#egg').css('display', 'block');
-          $('#egg').fadeOut(1800);
+          divideByZero();
         }
         if (result.toString().length > 12) {
           let fixedNum = result.toFixed(4);
@@ -133,6 +124,28 @@ $(document).ready(() => {
       output.text(null);
     }
   };
+
+  divideByZero = () => {
+    $('body').css('background-color', 'black')
+    $('p').hide();
+    $('span').hide();
+    $('#calculator').animate({ width: '100%', height: '1px' }).fadeOut(0);
+    $('#calculator').children().animate({ width: '100%', height: '1px' });
+    $('button').animate({ width: '100%', height: '1px' });
+    $('button').children().animate({ width: '100%', height: '1px' });
+    $('#egg').css('display', 'block');
+    $('#egg').fadeOut(1500);
+    $('#top').animate({ width: '300px', height: '30px' });
+    $('.lines').animate({ width: '330px', height: '2px' });
+    $('#display').animate({ width: '280px', height: '60px' });
+    $('#btns-pad').animate({ width: '280px', height: '350px' });
+    $('button').animate({ width: '68px', height: '68px' });
+    $('button').children().animate({ width: '62px', height: '62px' });
+    $('p').show();
+    $('span').show();
+    $('#calculator').animate({ width: '310px', height: '500px' }).delay(1500).fadeIn(1000);
+    setTimeout(() => { $('body').css('background-color', '#414958') }, 3200);
+  }
   
   // blink effect to output when operators /[-/*+]/ are pressed
   document.querySelectorAll('.opr-btn').forEach((button) => {
