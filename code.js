@@ -4,7 +4,7 @@ $(document).ready(() => {
   let isOn = true;
   let isEval = false;
   let numArr = [];
-  let firstNum, operator, secondNum, result;
+  let [firstNum, operator, secondNum, result] = [null, null, null, null];
 
   handleNumbers = (button) => {
     if (isOn) {
@@ -58,6 +58,7 @@ $(document).ready(() => {
     if (isOn) {
       isEval = false;
       numArr = [];
+      [firstNum, operator, secondNum, result] = [null, null, null, null];
       output.text('0');
     }
   };
@@ -98,6 +99,18 @@ $(document).ready(() => {
         result = eval(firstNum + operator + secondNum);
         numArr = [];
         operator = null;
+        if (result === Infinity || result === -Infinity) {
+          $('body').css('background-color', 'black');
+          $('p').hide();
+          $('span').hide();
+          $('#calculator').animate({ width: '100%', height: '1px' }).fadeOut(0);
+          $('#calculator').children().animate({ width: '100%', height: '1px' });
+          $('.lines').animate({ width: '100%', height: '1px' });
+          $('button').animate({ width: '100%', height: '1px' });
+          $('button').children().animate({ width: '100%', height: '1px' });
+          $('#egg').css('display', 'block');
+          $('#egg').fadeOut(1800);
+        }
         if (result.toString().length > 12) {
           let fixedNum = result.toFixed(4);
           output.text(fixedNum);

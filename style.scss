@@ -71,6 +71,11 @@ $red: #801805;
   border-radius: 50%;
 }
 
+.animate {
+  width: 100%;
+  height: 1px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -84,6 +89,12 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 1.5em;
   color: $lightCream;
+}
+
+#egg {
+  display: none;
+  font-size: 100px;
+  font-family: 'Digital';
 }
 
 #calculator {
