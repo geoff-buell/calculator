@@ -129,12 +129,16 @@ $(document).ready(() => {
     $('body').css('background-color', 'black')
     $('p').hide();
     $('span').hide();
-    $('#calculator').animate({ width: '100%', height: '1px' }).fadeOut(0);
-    $('#calculator').children().animate({ width: '100%', height: '1px' });
-    $('button').animate({ width: '100%', height: '1px' });
-    $('button').children().animate({ width: '100%', height: '1px' });
+    $('#calculator').animate({ width: '100%', height: '1px' }, 200);
+    $('#calculator').children().animate({ width: '100%', height: '1px' }, 200);
+    $('button').animate({ width: '100%', height: '1px' }, 200);
+    $('button').children().animate({ width: '100%', height: '1px' }, 200);
+    $('#calculator').animate({ width: '1px', height: '1px' }, 200).fadeOut(0);
+    $('#calculator').children().animate({ width: '1px', height: '1px' }, 200);
+    $('button').animate({ width: '1px', height: '1px' }, 200);
+    $('button').children().animate({ width: '1px', height: '1px' }, 200);
     $('#egg').css('display', 'block');
-    $('#egg').fadeOut(1500);
+    $('#egg').fadeOut(2500);
     $('#top').animate({ width: '300px', height: '30px' });
     $('.lines').animate({ width: '330px', height: '2px' });
     $('#display').animate({ width: '280px', height: '60px' });
@@ -143,8 +147,8 @@ $(document).ready(() => {
     $('button').children().animate({ width: '62px', height: '62px' });
     $('p').show();
     $('span').show();
-    $('#calculator').animate({ width: '310px', height: '500px' }).delay(1500).fadeIn(1000);
-    setTimeout(() => { $('body').css('background-color', '#414958') }, 3200);
+    $('#calculator').animate({ width: '310px', height: '500px' }).delay(2500).fadeIn(1000);
+    setTimeout(() => { $('body').css('background-color', '#414958') }, 3000);
   }
 
   // add event listeners to all of the buttons
