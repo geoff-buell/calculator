@@ -5,12 +5,13 @@ $(document).ready(() => {
   let isEval = false;
   let numArr = [];
   let oprCount = 0;
+  let lastBtn = null;
   let [firstNum, operator, secondNum, result] = [null, null, null, null];
 
   handleNumbers = (button) => {
     if (isOn) {
       isEval = false;
-
+      lastBtn = button.value;
       // prevents double zeros
       if (button.value === '0' && output[0].innerHTML === '0') {
         return false;
@@ -18,6 +19,9 @@ $(document).ready(() => {
       } else if (button.value === '.' && numArr.length === 0) {
         numArr.push(0); 
         numArr.push(button.value);  
+      // prevents double decimals  
+      } else if (button.value === '.' && numArr.includes('.') === true) {
+        return false;
       } else {
         numArr.push(button.value); 
       }
@@ -33,11 +37,19 @@ $(document).ready(() => {
   handleOperators = (button) => {
     if (isOn) {
       isEval = false;
-      // allows multiple entries without having to press '=' every time
-      oprCount++;
+      // checks to see if last btn pressed was an operator
+      if (/[*/+]/.test(lastBtn)) {
+        oprCount = 0;
+      } else {
+        oprCount++;
+      }
+      lastBtn = button.value;
+
+      // allows calculation without pressing '='
       if (oprCount > 1) {
         calculate();
-      }
+      } 
+      
       // allows negative numbers for second number
       if (button.value === '-' && /[*/+]/.test(operator)) {
         firstNum = output[0].innerHTML;
@@ -212,7 +224,7 @@ $(document).ready(() => {
 // Can type 0 before other numbers - ex. 02 [✅]
 // Can type ex. .2 which needs to be converted to 0.2 [✅]
 // If result is the same as the second number, need a way to distinguish calculation is done [❌]
-// Having some difficulties with negative numbers [❌]
+// Having some difficulties with negative numbers [✅]
 // Logging zeros after decimal sometimes [❌]
 // Can type a decimal, then press CE back to 0, then type number after 0, like 02 [❌]
 // If you press '=' immediately after pressing '=', calculate is run again [✅] 
@@ -234,7 +246,7 @@ $(document).ready(() => {
 
 // If another operator button is pressed immediately after opr btn has been pressed, 
    // replace operator button value with most recent opr btn value, unless it is '-' 
-   // in which the following number should be treated as a negative value. [❌]
+   // in which the following number should be treated as a negative value. [✅]
 
 // If CE button is pressed, last digit on screen should be removed. [✅]
 
