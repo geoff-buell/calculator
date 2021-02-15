@@ -83,6 +83,8 @@ $(document).ready(() => {
       output.text(numArr.join(''));
       if (numArr.length === 0) {
         output.text('0');
+      } else if (output[0].innerHTML === '0') {
+        numArr = [];
       }
     }
   };
@@ -226,7 +228,7 @@ $(document).ready(() => {
 // If result is the same as the second number, need a way to distinguish calculation is done [❌]
 // Having some difficulties with negative numbers [✅]
 // Logging zeros after decimal sometimes [❌]
-// Can type a decimal, then press CE back to 0, then type number after 0, like 02 [❌]
+// Can type a decimal, then press CE back to 0, then type number after 0, like 02 [✅]
 // If you press '=' immediately after pressing '=', calculate is run again [✅] 
 
 
